@@ -44,22 +44,18 @@ All settings are specified in the `settings.json` file. Example configuration st
 
 ### Field Descriptions
 
-- **save_logs**: A boolean value indicating whether to save logs to a file. If `true`, logs will be saved in the folder specified by `log_folder`.
-- **log_folder**: The folder where logs will be saved (used if `save_logs` is set to `true`).
+- **save_logs**: A boolean value indicating whether logs should be saved to a file.
+- **log_folder**: The folder where logs will be saved (if `save_logs` is set to `true`).
 - **directory_with_scanned_directories**: The folder where data about scanned directories will be stored.
-- **directories**: A list of directories to process. Each directory should include the following parameters:
-  - **path**: The path to the directory to be processed.
-  - **time_limit_for_modified_time**: The time (in seconds) after which a file is considered outdated (based on last modified time).
-  - **time_limit_for_first_seen**: The time (in seconds) after which a file is considered outdated (based on first seen time).
-  - **action_by_last_modified**: A boolean value indicating whether the last modified time of the file should be considered.
-  - **action_by_first_seen**: A boolean value indicating whether the first seen time of the file should be considered.
-  - **delete_entire_folders**: A boolean value indicating whether to delete empty folders if all files in them meet the deletion conditions.
-  - **file_name_exceptions**: A list of strings with file name exceptions that should not be deleted.
-  - **directory_name_exceptions**: A list of strings with directory name exceptions that should not be processed.
-
-## Logging
-
-If the `save_logs` option is set to `true`, the script will save logs to a file in the specified directory (`log_folder`). Logs will also be displayed in the console.
+- **directories**: A list of directories to be processed. Each directory should contain the following parameters:
+  - **path**: The path to the directory being processed.
+  - **time_limit_for_modified_time**: The time (in seconds) since the last modification, after which the file meets the action criteria.
+  - **time_limit_for_first_seen**: The time (in seconds) after which a file is considered outdated (based on its first seen time).
+  - **action_by_last_modified**: A boolean value indicating whether the last modified time of the file should be taken into account.
+  - **action_by_first_seen**: A boolean value indicating whether the first seen time of the file should be taken into account.
+  - **delete_entire_folders**: A boolean value indicating whether entire folders can be deleted if all files within them meet the criteria for deletion and the folders are empty.
+  - **file_name_exceptions**: A list of file name exceptions, indicating files that should not be deleted.
+  - **directory_name_exceptions**: A list of directory name exceptions, indicating directories that should not be processed.
 
 ## Notes
 
