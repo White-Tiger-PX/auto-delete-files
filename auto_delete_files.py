@@ -170,7 +170,7 @@ def update_dir_info(program_start_time, directory_with_scanned_directories, dire
     if not os.path.exists(directory_path):
         return archive_data
 
-    archive_file_name = directory_path.replace('/', '_').replace(':', '')
+    archive_file_name = directory_path.replace('\\', '_').replace('/', '_').replace(':', '')
     path = f"{directory_with_scanned_directories}/{archive_file_name}.json"
 
     archive_data = load_json(path, default_type={})
@@ -185,6 +185,8 @@ def main(settings):
     directory_with_scanned_directories = settings['directory_with_scanned_directories']
 
     for path_settings in settings['directories']:
+        path_settings['path'] = os.path.normpath(path_settings['path'])
+
         if not os.path.exists(path_settings['path']):
             continue
 
