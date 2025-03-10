@@ -20,34 +20,34 @@
 
 ## Конфигурация
 
-Все настройки указываются в файле `settings.json`. Пример структуры конфигурации:
+Все настройки указываются в файле `config.py`. Пример структуры конфигурации:
 
-```json
-{
-    "save_logs": true,
-    "log_folder": "logs",
-    "directory_with_scanned_directories": "scanned_directories",
-    "directories": [
-        {
-            "path": "C:/path/to/you/folder",
-            "time_limit_for_modified_time": 604800,
-            "time_limit_for_first_seen": 604800,
-            "action_by_last_modified": true,
-            "action_by_first_seen": true,
-            "delete_entire_folders": true,
-            "file_name_exceptions": [],
-            "directory_name_exceptions": []
-        }
-    ]
-}
+```python
+LOG_FOLDER                         = "logs"
+DIRECTORY_WITH_SCANNED_DIRECTORIES = "data/scanned_directories"
+DIRECTORIES_SETTINGS = [
+    {
+        "path": "C:/path/to/you/folder",
+        "time_limit_for_modified_time": 604800,
+        "time_limit_for_first_seen":    604800,
+        "action_by_last_modified": True,
+        "action_by_first_seen":    True,
+        "delete_entire_folders":   True,
+        "file_name_exceptions": [
+
+        ],
+        "directory_name_exceptions": [
+
+        ]
+    }
+]
 ```
 
 ### Описание полей
 
-- **save_logs**: Булевое значение, указывающее, нужно ли сохранять логи в файл.
-- **log_folder**: Папка, в которой будут сохраняться логи (если `save_logs` установлено в `true`).
-- **directory_with_scanned_directories**: Папка, где будут сохраняться данные об отсканированных директориях.
-- **directories**: Список директорий для обработки. Каждая директория должна содержать следующие параметры:
+- **LOG_FOLDER**: Папка, в которой будут сохраняться логи (используется, если `LOG_FOLDER` не `None`).
+- **DIRECTORY_WITH_SCANNED_DIRECTORIES**: Папка, где будут сохраняться данные об отсканированных директориях.
+- **DIRECTORIES_SETTINGS**: Список директорий для обработки. Каждая директория должна содержать следующие параметры:
   - **path**: Путь к обрабатываемой директории.
   - **time_limit_for_modified_time**: Время (в секундах) с момента последнего изменения, после которого файл подходит под условия действия.
   - **time_limit_for_first_seen**: Время (в секундах), за которое файл считается устаревшим (по времени первого обнаружения).
@@ -61,7 +61,7 @@
 
 - Скрипт использует стандартные библиотеки Python, поэтому не требуется дополнительных зависимостей.
 - Для работы с большими объемами данных и многими папками потребуется время на выполнение.
-- Убедитесь, что пути в `settings.json` указаны корректно и соответствуют операционной системе (для Windows используйте обратный слэш `\`).
+- Убедитесь, что пути в `config.py` указаны корректно и соответствуют операционной системе (для Windows используйте обратный слэш `\`).
 
 ### Автоматическое выполнение скрипта
 
@@ -77,7 +77,7 @@
 6. Выберите исполнимый файл Python. По умолчанию он находится по следующему пути:
    `C:\Users\ВАШЕ_ИМЯ_ПОЛЬЗОВАТЕЛЯ\AppData\Local\Programs\Python\ВАША_ВЕРСИЯ_python\python.exe`.
 7. В поле **Добавить аргументы** укажите полный путь к вашему скрипту. Например:
-   `(C:\путь\к\вашему\auto_delete_files.py)`
+   `(C:\programs\auto_delete_files.py)`
    *(Убедитесь, что путь заключён в кавычки, если он содержит пробелы.)*
 8. Нажмите **ОК**, чтобы сохранить задачу.
 

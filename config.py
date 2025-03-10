@@ -1,8 +1,9 @@
 import time
 
+
 program_start_time = time.time()
 
-LOG_FOLDER                         = "logs/auto_delete_files"
+LOG_FOLDER                         = "logs"
 DIRECTORY_WITH_SCANNED_DIRECTORIES = "data/scanned_directories"
 DIRECTORIES_SETTINGS = [
     {
